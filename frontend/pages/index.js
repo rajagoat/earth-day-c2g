@@ -2,6 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+// components
+import SignUpForm from '../components/SignUpForm'
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -32,8 +35,7 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.right}>
-          <p>Form goes here</p>
-          {/* form will be inserted here */}
+          <SignUpForm />
         </div>
       </main>
     </div>
