@@ -2,6 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+// public assets
+import cycleFarmer from '../public/cycleFarmer.png'
+
 // components
 import SignUpForm from '../components/SignUpForm'
 
@@ -29,13 +32,20 @@ export default function Home() {
               <p>kgs of food delivered to food banks!</p>
             </div>
           </div>
-          <div>
-            <p>Image goes here</p>
-            {/* image will be inserted here */}
+          <div className={styles.image}>
+            <Image
+              src={cycleFarmer}
+              alt="Shows relationships between gleaners farmers and food banks"
+              
+              placeholder="blur"
+              priority
+            />
           </div>
         </div>
-        <div className={styles.right}>
-          <SignUpForm />
+        <div className={styles.rightContainer}>
+          <div className={styles.right}>
+            <SignUpForm />
+          </div>
         </div>
       </main>
     </div>

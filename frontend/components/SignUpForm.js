@@ -22,53 +22,23 @@ const SignUpForm = () => {
                 />
             </div>
             <div className={styles.formItem}>
-                <label>First Name(s)</label>
-                <input
-                    type="text"
-                />
-            </div>
-            <div className={styles.formItem}>
-                <label>Last Name</label>
-                <input
-                    type="text"
-                />
-            </div>
-            <div className={styles.formItem}>
-                <label>Street Address</label>
-                <input
-                    type="text"
-                />
-            </div>
-            <div className={styles.formItem}>
-                <label>Postal Code</label>
-                <input
-                    type="text"
-                />
-            </div>
-            <div className={styles.formItem}>
-                <label>City</label>
-                <input
-                    type="text"
-                />
-            </div>
-            <div className={styles.formItem}>
-                <label>Province</label>
-                <input
-                    type="text"
-                />
-            </div>
-            <div className={styles.formItem}>
-                <label>Phone Number</label>
-                <input
-                    type="text"
-                />
-            </div>
-            <div className={styles.formItem}>
                 <label>Email Address</label>
                 <input
                     type="text"
                 />
             </div>
+            <div className={styles.formItem}>
+                <label>You are a</label>
+                <div className={styles.formRadio}>
+                    <input type="radio" name="userType" id="farmer" value='FARMER' />
+                    <label htmlFor="farmer">Farmer</label>
+                    <input type="radio" name="userType" id="gleaner" value='GLEANER' />
+                    <label htmlFor="gleaner">Gleaner</label>
+                    <input type="radio" name="userType" id="foodbank" value='FOODBANK' />
+                    <label htmlFor="foodbank">Food Bank</label>
+                </div>
+            </div>
+            <button>Sign Up</button>
         </form>
     );
 }
