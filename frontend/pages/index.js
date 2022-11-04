@@ -12,39 +12,30 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.upperLeft}>
-          <h1 className={styles.title}>
-            Let's save the earth
-          </h1>
-          <div className={styles.subtitle}>
-            <p>How?</p>
-            <p>By harvesting and sharing the surplus of the fields to the WORLD</p>
+        <div className={styles.left}>
+          <div>
+            <h1 className={styles.title}>
+              Let's save the earth
+            </h1>
+            <div className={styles.subtitle}>
+              <p>How?</p>
+              <p>By harvesting and sharing the surplus of the fields to the WORLD</p>
+            </div>
+            <div className={styles.counter}>
+              <h3>75+</h3>
+              <p>kgs of food delivered to food banks!</p>
+            </div>
           </div>
-          <div className={styles.counter}>
-            <h3>75+</h3>
-            <p>kgs of food delivered to food banks!</p>
+          <div>
+            <p>Image goes here</p>
+            {/* image will be inserted here */}
           </div>
-        </div>
-        <div className={styles.lowerLeft}>
-          {/* image will be inserted here */}
         </div>
         <div className={styles.right}>
+          <p>Form goes here</p>
           {/* form will be inserted here */}
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   )
 }
