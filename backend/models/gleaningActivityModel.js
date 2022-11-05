@@ -19,6 +19,7 @@ const gleaningActivitySchema = new Schema({
         type: String,
         enum: {
             values: [
+                'Request',
                 'Not Yet Started',
                 'Ongoing',
                 'Ready for Pickup',
