@@ -11,6 +11,7 @@ const gleanerRoutes = require('./routes/gleaner');
 const gleaningGroupRoutes = require('./routes/gleaningGroup');
 const foodBankWorkerRoutes = require('./routes/foodBankWorker');
 const foodBankRoutes = require('./routes/foodBank');
+const gleaningActivityRoutes = require('./routes/gleaningActivity');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use('/api/gleaner', gleanerRoutes);
 app.use('/api/gleaninggroup', gleaningGroupRoutes);
 app.use('/api/foodbankworker', foodBankWorkerRoutes);
 app.use('/api/foodbank', foodBankRoutes);
+app.use('/api/gleaningactivity', gleaningActivityRoutes);
 
 // connect to mongodb
 mongoose.connect(process.env.MONGO_URI)
