@@ -2,7 +2,6 @@ const User = require('../models/userModel');
 const Farmer = require('../models/farmerModel');
 
 const mongoose = require('mongoose');
-const e = require('express');
 const ObjectId = mongoose.Types.ObjectId;
 
 // get all farmers
@@ -47,7 +46,7 @@ const createFarmer = async (req, res) => {
         phoneNumber
     } = req.body;
     if (!_id) {
-        emptyFields.push('firstName');
+        emptyFields.push('_id');
     }
     if (!firstName) {
         emptyFields.push('firstName');
@@ -88,7 +87,7 @@ const createFarmer = async (req, res) => {
             });
             res.status(200).json(farmer);
         } else {
-            res.status(404).json({error: "No such farmer found."});
+            res.status(404).json({error: "No user account is linked to the ID given."});
         }
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -144,4 +143,4 @@ module.exports = {
     getFarmer,
     deleteFarmer,
     updateFarmer
-}
+};
