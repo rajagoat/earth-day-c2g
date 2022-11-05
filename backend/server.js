@@ -4,6 +4,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+// routes
+const farmerRoutes = require('./routes/farmers');
+
 const app = express();
 
 app.use(cors({origin: '*'}));
@@ -14,7 +17,7 @@ app.use((req, res, next) => {
 });
 
 // handle routes for requests
-app.use('/api/users', userRoutes);
+app.use('/api/farmers', farmerRoutes);
 
 // connect to mongodb
 /* mongoose.connect(process.env.MONGO_URI)
