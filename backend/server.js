@@ -8,6 +8,7 @@ const cors = require('cors');
 const userRoutes = require('./routes/user');
 const farmerRoutes = require('./routes/farmer');
 const gleanerRoutes = require('./routes/gleaner');
+const gleaningGroupRoutes = require('./routes/gleaningGroup');
 const foodBankWorkerRoutes = require('./routes/foodBankWorker');
 const foodBankRoutes = require('./routes/foodBank');
 
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 app.use('/api/user', userRoutes);
 app.use('/api/farmer', farmerRoutes);
 app.use('/api/gleaner', gleanerRoutes);
+app.use('/api/gleaninggroup', gleaningGroupRoutes);
 app.use('/api/foodbankworker', foodBankWorkerRoutes);
 app.use('/api/foodbank', foodBankRoutes);
 

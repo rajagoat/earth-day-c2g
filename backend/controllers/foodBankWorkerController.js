@@ -102,26 +102,27 @@ const deleteFoodBankWorker = async (req, res) => {
 // update a single food bank workers's info
 const updateFoodBankWorker = async (req, res) => {
     const { id } = req.params;
-    const { foodBank } = req.body;
     if (!ObjectId.isValid(id)) {
         return res.status(404).json({ error: "No such food bank worker found." });
     }
     try {
-        const foodBankId = await FoodBank.findById({ _id: ObjectId(foodBank) });
-        if (foodBankId) {
-            const foodBankWorker = await FoodBankWorker.findOneAndUpdate(
-                { _id: id },
-                { ...req.body },
-                // new: true returns updated value instead of old one
-                { new: true }
-            );
-            if (!foodBankWorker) {
-                return res.status(404).json({ error: "No such food bank worker found." });
-            } else {
-                res.status(200).json(foodBankWorker);
+        if (req.body.hasOwnProperty('foodBank')) {
+            const { foodBank } = req.body;
+            const foodBankId = await FoodBank.findById({ _id: ObjectId(foodBank) });
+            if (!foodBankId) {
+                return res.status(404).json({ error: "No food bank worker found with the given ID." });
             }
+        }
+        const foodBankWorker = await FoodBankWorker.findOneAndUpdate(
+            { _id: id },
+            { ...req.body },
+            // new: true returns updated value instead of old one
+            { new: true }
+        );
+        if (!foodBankWorker) {
+            return res.status(404).json({ error: "No such food bank worker found." });
         } else {
-            return res.status(404).json({ error: "No food bank found with the given ID." });
+            res.status(200).json(foodBankWorker);
         }
     } catch (error) {
         res.status(400).json({ error: error.message });

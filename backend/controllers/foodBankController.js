@@ -83,14 +83,14 @@ const createFoodBank = async (req, res) => {
     }
 };
 
-// delete a single food bank 's info
+// delete a single food bank's info
 const deleteFoodBank = async (req, res) => {
     const { id } = req.params;
     if (!ObjectId.isValid(id)) {
         return res.status(404).json({ error: "No such food bank found." });
     }
     try {
-        // both the food bank  instance and the user instance are deleted
+        // both the food bank instance and the user instance are deleted
         const foodBank = await FoodBank.findOneAndDelete({ _id: id });
         if (!foodBank) {
             return res.status(404).json({ error: "No such food bank found." });
@@ -102,7 +102,7 @@ const deleteFoodBank = async (req, res) => {
     }
 };
 
-// update a single food bank s's info
+// update a single food bank's info
 const updateFoodBank = async (req, res) => {
     const { id } = req.params;
     if (!ObjectId.isValid(id)) {
