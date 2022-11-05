@@ -8,6 +8,8 @@ const cors = require('cors');
 const userRoutes = require('./routes/user');
 const farmerRoutes = require('./routes/farmer');
 const gleanerRoutes = require('./routes/gleaner');
+const foodBankWorkerRoutes = require('./routes/foodBankWorker');
+const foodBankRoutes = require('./routes/foodBank');
 
 const app = express();
 
@@ -22,6 +24,8 @@ app.use((req, res, next) => {
 app.use('/api/user', userRoutes);
 app.use('/api/farmer', farmerRoutes);
 app.use('/api/gleaner', gleanerRoutes);
+app.use('/api/foodbankworker', foodBankWorkerRoutes);
+app.use('/api/foodbank', foodBankRoutes);
 
 // connect to mongodb
 mongoose.connect(process.env.MONGO_URI)

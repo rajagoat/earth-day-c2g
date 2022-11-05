@@ -3,14 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const foodBankSchema = new Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'User'
-    },
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
+    name: {
         type: String,
         required: true
     },
@@ -31,6 +24,10 @@ const foodBankSchema = new Schema({
         required: true
     },
     phoneNumber: {
+        type: String,
+        required: true
+    },
+    emailAddress: {
         type: String,
     },
 });
