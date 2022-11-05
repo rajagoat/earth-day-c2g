@@ -9,11 +9,9 @@ const gleaningActivitySchema = new Schema({
     },
     gleaningGroup: {
         type: Schema.Types.ObjectId, ref: 'Gleaning Group',
-        required: true
     },
     foodBank: {
         type: Schema.Types.ObjectId, ref: 'Food Bank',
-        required: true
     },
     status: {
         type: String,
@@ -27,6 +25,7 @@ const gleaningActivitySchema = new Schema({
                 'Complete',
                 'Cancelled'
             ],
+            default: 'New',
             message: '{VALUE} is not supported for status'
         },
         required: true

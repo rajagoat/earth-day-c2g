@@ -39,8 +39,6 @@ const createGleaningActivity = async (req, res) => {
     let emptyFields = [];
     const {
         farmer,
-        gleaningGroup,
-        foodBank,
         status,
         typeOfProduce,
         endDate,
@@ -48,12 +46,6 @@ const createGleaningActivity = async (req, res) => {
     } = req.body;
     if (!farmer) {
         emptyFields.push('farmer');
-    }
-    if (!gleaningGroup) {
-        emptyFields.push('gleaningGroup');
-    }
-    if (!foodBank) {
-        emptyFields.push('foodBank');
     }
     if (!status) {
         emptyFields.push('status');
@@ -72,13 +64,9 @@ const createGleaningActivity = async (req, res) => {
     }
     try {
         const farmerId = await Farmer.findById({ _id: ObjectId(farmer) });
-        const gleaningGroupId = await GleaningGroup.findById({ _id: ObjectId(gleaningGroup) });
-        const foodBankId = await FoodBank.findById({ _id: ObjectId(foodBank) });
-        if (farmerId && gleaningGroupId && foodBankId) {
+        if (farmerId) {
             const gleaningActivity = await GleaningActivity.create({
                 farmer,
-                gleaningGroup,
-                foodBank,
                 status,
                 typeOfProduce,
                 endDate,
