@@ -5,11 +5,12 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 // routes
-const farmerRoutes = require('./routes/farmers');
+const userRoutes = require('./routes/user');
+const farmerRoutes = require('./routes/farmer');
 
 const app = express();
 
-app.use(cors({origin: '*'}));
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use((req, res, next) => {
     console.log(req.path, req.method);
@@ -17,10 +18,11 @@ app.use((req, res, next) => {
 });
 
 // handle routes for requests
-app.use('/api/farmers', farmerRoutes);
+app.use('/api/user', farmerRoutes);
+app.use('/api/farmer', farmerRoutes);
 
 // connect to mongodb
-/* mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         // listen for requests
         app.listen(process.env.PORT, () => {
@@ -29,4 +31,4 @@ app.use('/api/farmers', farmerRoutes);
     })
     .catch((error) => {
         console.log(error);
-    }) */
+    })

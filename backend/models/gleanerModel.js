@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const farmerSchema = new Schema({
+const gleanerSchema = new Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User'
     },
@@ -11,18 +11,6 @@ const farmerSchema = new Schema({
         required: true
     },
     lastName: {
-        type: String,
-        required: true
-    },
-    streetAddress: {
-        type: String,
-        required: true
-    },
-    city: {
-        type: String,
-        required: true
-    },
-    province: {
         type: String,
         required: true
     },
@@ -35,4 +23,4 @@ const farmerSchema = new Schema({
     },
 });
 
-module.exports = mongoose.model('Farmer', farmerSchema);
+module.exports = mongoose.model('Gleaner', gleanerSchema);

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const farmerSchema = new Schema({
+const foodBankSchema = new Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User'
     },
@@ -35,4 +35,4 @@ const farmerSchema = new Schema({
     },
 });
 
-module.exports = mongoose.model('Farmer', farmerSchema);
+module.exports = mongoose.model('Food Bank', foodBankSchema);
