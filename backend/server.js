@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 });
 
 // handle routes for requests
-app.use('/api/user', farmerRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/farmer', farmerRoutes);
 
 // connect to mongodb

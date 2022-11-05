@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 
 const farmerSchema = new Schema({
     _id: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'User'
+        type: mongoose.Schema.Types.ObjectId, ref: 'User',
+        required: true
     },
     firstName: {
         type: String,

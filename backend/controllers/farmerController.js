@@ -1,6 +1,9 @@
+const User = require('../models/userModel');
 const Farmer = require('../models/farmerModel');
 
 const mongoose = require('mongoose');
+const e = require('express');
+const ObjectId = mongoose.Types.ObjectId;
 
 // get all farmers
 const getFarmers = async (req, res) => {
@@ -15,7 +18,7 @@ const getFarmers = async (req, res) => {
 // get a single farmer
 const getFarmer = async (req, res) => {
     const { id } = req.params;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+    if (!ObjectId.isValid(id)) {
         return res.status(404).json({ error: "No such farmer found." });
     }
     try {
@@ -34,6 +37,7 @@ const getFarmer = async (req, res) => {
 const createFarmer = async (req, res) => {
     let emptyFields = [];
     const {
+        _id,
         firstName,
         lastName,
         streetAddress,
@@ -42,6 +46,9 @@ const createFarmer = async (req, res) => {
         postalCode,
         phoneNumber
     } = req.body;
+    if (!_id) {
+        emptyFields.push('firstName');
+    }
     if (!firstName) {
         emptyFields.push('firstName');
     }
@@ -67,27 +74,74 @@ const createFarmer = async (req, res) => {
         });
     }
     try {
-        const farmer = await Farmer.create({
-            firstName,
-            lastName,
-            streetAddress,
-            city,
-            province,
-            postalCode,
-            phoneNumber
-        });
-        res.status(200).json(farmer);
+        const userId = await User.findById({ _id: ObjectId(_id) });
+        if (ObjectId.isValid(_id) && userId) {
+            const farmer = await Farmer.create({
+                _id,
+                firstName,
+                lastName,
+                streetAddress,
+                city,
+                province,
+                postalCode,
+                phoneNumber
+            });
+            res.status(200).json(farmer);
+        } else {
+            res.status(404).json({error: "No such farmer found."});
+        }
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
 // delete a single farmer's info
+const deleteFarmer = async(req, res) => {
+    const { id } = req.params;
+    if (!ObjectId.isValid(id)) {
+        return res.status(404).json({error: "No such farmer found."});
+    }
+    try {
+        // both the farmer instance and the user instance are deleted
+        const farmer = await Farmer.findOneAndDelete({ _id: id });
+        const user = await User.findOneAndDelete({_id: id});
+        if (!farmer || !user) {
+            return res.status(404).json({error: "Account is not linked properly."});
+        } else {
+            res.status(200).json(farmer);
+        }
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
 
 // update a single farmer's info
+const updateFarmer = async(req, res) => {
+    const { id } = req.params;
+    if (!ObjectId.isValid(id)) {
+        return res.status(404).json({error: "No such farmer found."});
+    }
+    try {
+        const farmer = await Farmer.findOneAndUpdate(
+            {_id: id},
+            { ...req.body },
+            // new: true returns updated value instead of old one
+            { new: true }
+        );
+        if (!farmer) {
+            return res.status(404).json({ error: "No such farmer found." });
+        } else {
+            res.status(200).json(farmer);
+        }
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
 
 module.exports = {
     createFarmer,
     getFarmers,
     getFarmer,
+    deleteFarmer,
+    updateFarmer
 }

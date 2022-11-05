@@ -3,8 +3,8 @@ const {
     createFarmer,
     getFarmers,
     getFarmer,
-    /* deleteFarmer,
-    updateFarmer */
+    deleteFarmer,
+    updateFarmer
 } = require('../controllers/farmerController');
 
 const router = express.Router();
@@ -19,7 +19,9 @@ router.get('/:id', getFarmer);
 router.post('/', createFarmer);
 
 // DELETE a single farmer
+router.delete('/:id', deleteFarmer);
 
 // UPDATE a single farmer
+router.put('/:id', updateFarmer);
 
 module.exports = router;
