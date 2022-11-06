@@ -7,6 +7,10 @@ const gleaningGroupSchema = new Schema({
         type: String,
         required: true
     },
+    leader: {
+        type: Schema.Types.ObjectId, ref: 'Gleaner',
+        required: true
+    },
     gleaners: [{
         type: Schema.Types.ObjectId, ref: 'Gleaner',
         required: true

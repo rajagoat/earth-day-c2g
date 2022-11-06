@@ -34,6 +34,14 @@ const farmerSchema = new Schema({
     phoneNumber: {
         type: String,
     },
+    capacity: {
+        type: Number,
+        required: true
+    },
+    isValidated: {
+        type: Boolean,
+        default: false
+    }
 });
 
 module.exports = mongoose.model('Farmer', farmerSchema);
