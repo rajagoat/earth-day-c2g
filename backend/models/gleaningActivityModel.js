@@ -42,7 +42,7 @@ const gleaningActivitySchema = new Schema({
         type: Date,
         required: true
     },
-    numberOfProduceCollected: {
+    weightOfProduceCollected: {
         type: Number,
         default: 0
     }
