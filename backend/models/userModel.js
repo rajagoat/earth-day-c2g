@@ -20,7 +20,7 @@ const userSchema = new Schema({
     typeOfUser: {
         type: String,
         enum: {
-            value: [
+            values: [
                 'Farmer',
                 'Gleaner',
                 'Food Bank Worker'
