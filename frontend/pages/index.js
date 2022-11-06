@@ -1,6 +1,9 @@
 import { Fragment } from 'react'
+import Link from 'next/link';
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+
+// components
 import Features from '../components/Features';
 import CTA from '../components/CTA';
 
@@ -29,7 +32,7 @@ export default function Example() {
                         <span className="sr-only">Your Company</span>
                         <img
                           alt="Your Company"
-                          className="h-8 w-auto sm:h-10"
+                          className="signuph-8 w-auto sm:h-10"
                           src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                         />
                       </a>
@@ -42,12 +45,12 @@ export default function Example() {
                     </div>
                   </div>
                   <div className="hidden md:ml-10 md:block md:space-x-8 md:pr-4">
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                    <Link href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
                       Log In
-                    </a>
-                    <a href="#" className="font-medium rounded-md border border-transparent bg-indigo-600 px-7 py-3 text-base font-small text-white hover:bg-indigo-700 md:py-4 md:px-6 md:text-md">
+                    </Link>
+                    <Link href="/signup" className="font-medium rounded-md border border-transparent bg-indigo-600 px-7 py-3 text-base font-small text-white hover:bg-indigo-700 md:py-4 md:px-6 md:text-md">
                       Sign Up
-                    </a>
+                    </Link>
                   </div>
                 </nav>
               </div>
@@ -81,18 +84,18 @@ export default function Example() {
                         </Popover.Button>
                       </div>
                     </div>
-                    <a
-                      href="#"
+                    <Link
+                      href="/login"
                       className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-indigo-600 hover:bg-gray-100"
                     >
                       Log In
-                    </a>
-                    <a
-                      href="#"
+                    </Link>
+                    <Link
+                      href="/signup"
                       className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-indigo-600 hover:bg-gray-100"
                     >
                       Sign Up
-                    </a>
+                    </Link>
                   </div>
                 </Popover.Panel>
               </Transition>
@@ -110,12 +113,12 @@ export default function Example() {
                 </p>
                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                   <div className="rounded-md shadow">
-                    <a
-                      href="#"
+                    <Link
+                      href="/signup"
                       className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg"
                     >
                       Get started
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
