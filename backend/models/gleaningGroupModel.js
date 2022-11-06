@@ -9,8 +9,13 @@ const gleaningGroupSchema = new Schema({
     },
     gleaners: [{
         type: Schema.Types.ObjectId, ref: 'Gleaner',
-        required: true
+        required: true,
+        validate: [groupMinimum, '{PATH} fails to meet the minimum group size of 5']
     }],
 });
+
+groupMinimum = (val) => {
+    return val.length >= 5;
+}
 
 module.exports = mongoose.model('Gleaning Group', gleaningGroupSchema);
