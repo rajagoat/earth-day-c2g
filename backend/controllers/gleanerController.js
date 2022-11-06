@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const Gleaner = require('../models/gleanerModel');
+const GleaningGroup = require('../models/gleaningGroupModel');
 
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
@@ -41,7 +42,8 @@ const createGleaner = async (req, res) => {
         lastName,
         postalCode,
         city,
-        phoneNumber
+        phoneNumber,
+        gleaningGroup
     } = req.body;
     if (!_id) {
         emptyFields.push('_id');
@@ -72,7 +74,8 @@ const createGleaner = async (req, res) => {
                 firstName,
                 lastName,
                 postalCode,
-                phoneNumber
+                phoneNumber,
+                gleaningGroup
             });
             res.status(200).json(gleaner);
         } else {
@@ -110,6 +113,13 @@ const updateGleaner = async (req, res) => {
         return res.status(404).json({ error: "No such gleaner found." });
     }
     try {
+        if (req.body.hasOwnProperty('gleaningGroup')) {
+            const { gleaningGroup } = req.body;
+            const gleaningGroupId = GleaningGroup.findById({ _id: ObjectId(gleaningGroup) });
+            if (!gleaningGroupId) {
+                return res.status(404).json({ error: "No gleaning group with the given ID found." });
+            }
+        }
         const gleaner = await Gleaner.findOneAndUpdate(
             { _id: id },
             { ...req.body },

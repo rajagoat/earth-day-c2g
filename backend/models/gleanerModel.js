@@ -26,6 +26,9 @@ const gleanerSchema = new Schema({
     phoneNumber: {
         type: String,
     },
+    gleaningGroup: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Gleaning Group',
+    }
 });
 
 module.exports = mongoose.model('Gleaner', gleanerSchema);
