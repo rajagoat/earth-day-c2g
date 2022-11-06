@@ -23,7 +23,7 @@ export default function Signup() {
                     </div>
                     <form className="mt-8 space-y-6" action="#" method="POST">
                         <input type="hidden" name="remember" defaultValue="true" />
-                        <div className="-space-y-px rounded-md shadow-sm">
+                        <div className="-space-y-px rounded-md">
                             <div>
                                 <div className="col-span-3 sm:col-span-2">
                                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -39,7 +39,7 @@ export default function Signup() {
                                         />
                                     </div>
                                 </div>
-                                <div className="col-span-3 sm:col-span-2 mt-2">
+                                <div className="col-span-3 sm:col-span-2 mt-3">
                                     <label htmlFor="username" className="block text-sm font-medium text-gray-700">
                                         Username
                                     </label>
@@ -52,7 +52,7 @@ export default function Signup() {
                                         />
                                     </div>
                                 </div>
-                                <div className="col-span-3 sm:col-span-2 mt-2">
+                                <div className="col-span-3 sm:col-span-2 mt-3">
                                     <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                                         Password
                                     </label>
@@ -65,7 +65,7 @@ export default function Signup() {
                                         />
                                     </div>
                                 </div>
-                                <div className="col-span-3 sm:col-span-2 mt-2">
+                                <div className="col-span-3 sm:col-span-2 mt-3">
                                     <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
                                         Confirm Password
                                     </label>
@@ -78,21 +78,45 @@ export default function Signup() {
                                         />
                                     </div>
                                 </div>
-                                <div className="col-span-3 sm:col-span-2 mt-2">
-                                    <label htmlFor="country" className="block text-sm font-medium text-gray-700">
-                                        I am a:
-                                    </label>
-                                    <select
-                                        id="country"
-                                        name="country"
-                                        autoComplete="country-name"
-                                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                    >
-                                        <option></option>
-                                        <option>Gleaner</option>
-                                        <option>Farmer</option>
-                                        <option>Food Bank Worker</option>
-                                    </select>
+                                <div className="col-span-3 sm:col-span-2 mt-3">
+                                    <fieldset>
+                                        <legend className="block text-sm font-medium text-gray-700">I am a:</legend>
+                                        <div className="mt-2 space-y-4">
+                                            <div className="flex items-center">
+                                                <input
+                                                    id="gleaner"
+                                                    name="typeofuser"
+                                                    type="radio"
+                                                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                                />
+                                                <label htmlFor="gleaner" className="ml-3 block text-sm font-medium text-gray-700">
+                                                    Gleaner
+                                                </label>
+                                            </div>
+                                            <div className="flex items-center">
+                                                <input
+                                                    id="farmer"
+                                                    name="typeofuser"
+                                                    type="radio"
+                                                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                                />
+                                                <label htmlFor="farmer" className="ml-3 block text-sm font-medium text-gray-700">
+                                                    Farmer
+                                                </label>
+                                            </div>
+                                            <div className="flex items-center">
+                                                <input
+                                                    id="foodbankworker"
+                                                    name="typeofuser"
+                                                    type="radio"
+                                                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                                />
+                                                <label htmlFor="foodbankworker" className="ml-3 block text-sm font-medium text-gray-700">
+                                                    Food Bank Worker
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
                                 </div>
                             </div>
                         </div>
