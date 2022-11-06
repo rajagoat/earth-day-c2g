@@ -1,3 +1,6 @@
+// NOTE:
+// This file is for TESTING ONLY, not one of the actual routes.
+
 import { useEffect } from "react";
 
 // hooks
@@ -9,7 +12,6 @@ const Farmers = () => {
     useEffect(() => {
         const fetchFarmers = async () => {
             const response = await fetch("http://localhost:4000/api/farmer");
-            console.log('fetch fired');
             const json = await response.json();
             if (response.ok) {
                 dispatch({
@@ -34,7 +36,7 @@ const Farmers = () => {
 
     const handleUpdate = async (_id) => {
         const farmer = {
-            lastName: "medium"
+            lastName: "hard"
         };
         const response = await fetch("http://localhost:4000/api/farmer/" + _id, {
             method: 'PUT',
@@ -53,9 +55,9 @@ const Farmers = () => {
         <div>
             <h1>Farmers page</h1>
             {farmers && farmers.map(farmer =>
-                <div key={farmer?._id}>
-                    <p>{farmer?.firstName}</p>
-                    <p>{farmer?.lastName}</p>
+                <div key={farmer._id}>
+                    <p>{farmer.firstName}</p>
+                    <p>{farmer.lastName}</p>
                     <span style={{ color: "red" }} onClick={() => handleDelete(farmer._id)}>Delete</span>
                     <p style={{ color: "blue" }} onClick={() => handleUpdate(farmer._id)}>Update</p>
                 </div>
