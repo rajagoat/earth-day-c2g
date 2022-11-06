@@ -16,11 +16,23 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    typeOfUser: {
+        type: String,
+        enum: {
+            value: [
+                'Farmer',
+                'Gleaner',
+                'Food Bank Worker'
+            ],
+            message: '{VALUE} is not supported for typeOfUser'
+        },
+        required: true
     }
 });
 
 // static signup method
-userSchema.statics.signup = async function(username, email, password) {
+userSchema.statics.signup = async function(username, email, password, typeOfUser) {
     const exists = await this.findOne({ email });
 
     if (exists) {
@@ -33,7 +45,8 @@ userSchema.statics.signup = async function(username, email, password) {
     const user = await this.create({
         username,
         email,
-        password: hash
+        password: hash,
+        typeOfUser
     });
 
     return user;
