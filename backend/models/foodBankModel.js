@@ -30,6 +30,14 @@ const foodBankSchema = new Schema({
     emailAddress: {
         type: String,
     },
+    capacity: {
+        type: Number,
+        required: true
+    },
+    distanceRange: {
+        type: Number,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Food Bank', foodBankSchema);

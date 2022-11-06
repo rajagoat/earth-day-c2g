@@ -37,10 +37,14 @@ const createGleaningGroup = async (req, res) => {
     let emptyFields = [];
     const {
         name,
+        leader,
         gleaners
     } = req.body;
     if (!name) {
         emptyFields.push('name');
+    }
+    if (!leader) {
+        emptyFields.push('leader');
     }
     if (!gleaners) {
         emptyFields.push('gleaners');
@@ -93,6 +97,13 @@ const updateGleaningGroup = async (req, res) => {
         return res.status(404).json({ error: "No such gleaning group found." });
     }
     try {
+        if (req.body.hasOwnProperty('leader')) {
+            const { leader } = req.body;
+            const leaderId = await Gleaner.findById({ _id: ObjectId(leader) });
+            if (!leaderId) {
+                return res.status(404).json({ error: "No gleaner found with the given ID." });
+            }
+        }
         if (req.body.hasOwnProperty('gleaners')) {
             const { gleaners } = req.body;
             const gleanerIds = gleaners.map(ObjectId);

@@ -41,7 +41,9 @@ const createFoodBank = async (req, res) => {
         province,
         postalCode,
         phoneNumber,
-        emailAddress
+        emailAddress,
+        capacity,
+        distance
     } = req.body;
     if (!name) {
         emptyFields.push('name');
@@ -61,6 +63,12 @@ const createFoodBank = async (req, res) => {
     if (!phoneNumber) {
         emptyFields.push('phoneNumber');
     }
+    if (!capacity) {
+        emptyFields.push('capacity');
+    }
+    if (!distance) {
+        emptyFields.push('distance');
+    }
     if (emptyFields.length > 0) {
         return res.status(400).json({
             error: "Please fill in all the fields.",
@@ -75,7 +83,9 @@ const createFoodBank = async (req, res) => {
             province,
             postalCode,
             phoneNumber,
-            emailAddress
+            emailAddress,
+            capacity,
+            distance
         });
         res.status(200).json(foodBank);
     } catch (error) {

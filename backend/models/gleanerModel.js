@@ -26,6 +26,14 @@ const gleanerSchema = new Schema({
     phoneNumber: {
         type: String,
     },
+    gleaningGroup: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Gleaning Group',
+        required: true
+    },
+    distanceRange: {
+        type: Number,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Gleaner', gleanerSchema);

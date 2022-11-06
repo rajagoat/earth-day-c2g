@@ -43,7 +43,9 @@ const createFarmer = async (req, res) => {
         city,
         province,
         postalCode,
-        phoneNumber
+        phoneNumber,
+        capacity,
+        isValidated
     } = req.body;
     if (!_id) {
         emptyFields.push('_id');
@@ -66,6 +68,9 @@ const createFarmer = async (req, res) => {
     if (!postalCode) {
         emptyFields.push('postalCode');
     }
+    if (!capacity) {
+        emptyFields.push('capacity');
+    }
     if (emptyFields.length > 0) {
         return res.status(400).json({
             error: "Please fill in all the fields.",
@@ -83,7 +88,8 @@ const createFarmer = async (req, res) => {
                 city,
                 province,
                 postalCode,
-                phoneNumber
+                phoneNumber,
+                isValidated
             });
             res.status(200).json(farmer);
         } else {
