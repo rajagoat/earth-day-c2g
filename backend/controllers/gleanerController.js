@@ -43,7 +43,8 @@ const createGleaner = async (req, res) => {
         postalCode,
         city,
         phoneNumber,
-        gleaningGroup
+        gleaningGroup,
+        distance
     } = req.body;
     if (!_id) {
         emptyFields.push('_id');
@@ -63,6 +64,9 @@ const createGleaner = async (req, res) => {
     if (!gleaningGroup) {
         emptyFields.push('gleaningGroup');
     }
+    if (!distance) {
+        emptyFields.push('distance');
+    }
     if (emptyFields.length > 0) {
         return res.status(400).json({
             error: "Please fill in all the fields.",
@@ -78,7 +82,8 @@ const createGleaner = async (req, res) => {
                 lastName,
                 postalCode,
                 phoneNumber,
-                gleaningGroup
+                gleaningGroup,
+                distance
             });
             res.status(200).json(gleaner);
         } else {

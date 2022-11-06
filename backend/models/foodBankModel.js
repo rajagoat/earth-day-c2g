@@ -34,6 +34,10 @@ const foodBankSchema = new Schema({
         type: Number,
         required: true
     },
+    distanceRange: {
+        type: Number,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Food Bank', foodBankSchema);

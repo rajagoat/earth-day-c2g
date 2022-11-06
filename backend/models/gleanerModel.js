@@ -29,6 +29,10 @@ const gleanerSchema = new Schema({
     gleaningGroup: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Gleaning Group',
         required: true
+    },
+    distanceRange: {
+        type: Number,
+        required: true
     }
 });
 
