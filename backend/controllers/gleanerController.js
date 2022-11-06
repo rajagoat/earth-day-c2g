@@ -60,6 +60,9 @@ const createGleaner = async (req, res) => {
     if (!city) {
         emptyFields.push('city');
     }
+    if (!gleaningGroup) {
+        emptyFields.push('gleaningGroup');
+    }
     if (emptyFields.length > 0) {
         return res.status(400).json({
             error: "Please fill in all the fields.",
