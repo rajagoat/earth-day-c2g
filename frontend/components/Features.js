@@ -1,26 +1,26 @@
-import { BoltIcon, ChatBubbleBottomCenterTextIcon, GlobeAltIcon, ScaleIcon } from '@heroicons/react/24/outline'
+import { DocumentChartBarIcon, MapPinIcon, GlobeAltIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline'
 
 const features = [
   {
-    name: 'Competitive exchange rates',
+    name: 'Gather Volunteers',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Farmers will be able to connect with participating gleaners/gleaning groups on the Gleanr.',
     icon: GlobeAltIcon,
   },
   {
-    name: 'No hidden fees',
+    name: 'Explore Gleaning Opportunities Near You',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: ScaleIcon,
+    icon: MapPinIcon,
   },
   {
-    name: 'Transfers are instant',
+    name: 'Evaluate How Much Food Is Saved Through Gleaning',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
-    icon: BoltIcon,
+    icon: DocumentChartBarIcon,
   },
   {
-    name: 'Mobile notifications',
+    name: 'Real Time Notifications!',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
     icon: ChatBubbleBottomCenterTextIcon,
@@ -32,13 +32,12 @@ export default function Features() {
     <div className="bg-white py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
-          <h2 className="text-lg font-semibold text-indigo-600">Transactions</h2>
+          <h2 className="text-lg font-semibold text-indigo-600">Gleaning</h2>
           <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
-            A better way to send money
+            A better way to mitigate food waste
           </p>
           <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in
-            accusamus quisquam.
+            Gleaning is the act of collecting leftover crops and other produce from the general harvest. This helps to create a more sustainable farming atmosphere.
           </p>
         </div>
 
