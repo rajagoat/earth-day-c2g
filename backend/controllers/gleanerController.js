@@ -40,6 +40,7 @@ const createGleaner = async (req, res) => {
         firstName,
         lastName,
         postalCode,
+        city,
         phoneNumber
     } = req.body;
     if (!_id) {
@@ -53,6 +54,9 @@ const createGleaner = async (req, res) => {
     }
     if (!postalCode) {
         emptyFields.push('postalCode');
+    }
+    if (!city) {
+        emptyFields.push('city');
     }
     if (emptyFields.length > 0) {
         return res.status(400).json({
