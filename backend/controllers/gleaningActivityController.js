@@ -34,13 +34,14 @@ const getGleaningActivity = async (req, res) => {
     }
 };
 
-// create a new gleaning group 
+// create a new gleaning activity 
 const createGleaningActivity = async (req, res) => {
     let emptyFields = [];
     const {
         farmer,
         status,
         typeOfProduce,
+        priority,
         endDate,
         numberOfProduceCollected
     } = req.body;
@@ -69,6 +70,7 @@ const createGleaningActivity = async (req, res) => {
                 farmer,
                 status,
                 typeOfProduce,
+                priority,
                 endDate,
                 numberOfProduceCollected
             });
