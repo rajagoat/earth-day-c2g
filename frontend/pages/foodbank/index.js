@@ -21,7 +21,7 @@ const Home = () => {
                                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">Expected pick up date:</th>
                                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">Status</th>
                                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">Location</th>
-                                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">Confirm PickUp</th>
+                                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">Send Intrest</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,11 +39,13 @@ const Home = () => {
                                 </td>
                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     <div className="flex items-center">
-                                        <span className="mr-2">60%</span>
-                                        <div className="relative w-full">
-                                            <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-                                                <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500" style={{width: "60%"}}></div>
-                                            </div>
+                                        <div className="inline-flex rounded-md shadow">
+                                            <a
+                                            href="foodbank/confirmpickup"
+                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700"
+                                            >
+                                            Confirm Pickup 
+                                            </a>
                                         </div>
                                     </div>
                                 </td>
@@ -72,11 +74,13 @@ const Home = () => {
                                 </td>
                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     <div className="flex items-center">
-                                        <span className="mr-2">100%</span>
-                                        <div className="relative w-full">
-                                            <div className="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
-                                                <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500" style={{width: "100%"}}></div>
-                                            </div>
+                                        <div className="inline-flex rounded-md shadow">
+                                            <a
+                                            href="foodbank/confirmpickup"
+                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700"
+                                            >
+                                            Confirm Pickup 
+                                            </a>
                                         </div>
                                     </div>
                                 </td>
@@ -105,11 +109,13 @@ const Home = () => {
                                 </td>
                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     <div className="flex items-center">
-                                        <span className="mr-2">73%</span>
-                                        <div className="relative w-full">
-                                            <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-                                                <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500" style={{width: "73%"}}></div>
-                                            </div>
+                                        <div className="inline-flex rounded-md shadow">
+                                            <a
+                                            href="foodbank/confirmpickup"
+                                            className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700"
+                                            >
+                                            Confirm Pickup 
+                                            </a>
                                         </div>
                                     </div>
                                 </td>
