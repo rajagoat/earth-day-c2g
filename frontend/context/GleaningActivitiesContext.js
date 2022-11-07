@@ -42,12 +42,12 @@ export const gleaningActivitiesReducer = (state, action) => {
 }
 
 export const GleaningActivitiesContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(gleaningActivitiesReducer, {
+    const [state, dispatchGleaningActivities] = useReducer(gleaningActivitiesReducer, {
         gleaningActivities: null
     });
 
     return (
-        <GleaningActivitiesContext.Provider value={{...state, dispatch}}>
+        <GleaningActivitiesContext.Provider value={{...state, dispatchGleaningActivities}}>
             {children}
         </GleaningActivitiesContext.Provider>
     )

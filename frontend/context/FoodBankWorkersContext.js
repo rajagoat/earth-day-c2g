@@ -42,12 +42,12 @@ export const foodBankWorkersReducer = (state, action) => {
 }
 
 export const FoodBankWorkersContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(foodBankWorkersReducer, {
+    const [state, dispatchFoodBankWorkers] = useReducer(foodBankWorkersReducer, {
         foodBankWorkers: null
     });
 
     return (
-        <FoodBankWorkersContext.Provider value={{...state, dispatch}}>
+        <FoodBankWorkersContext.Provider value={{...state, dispatchFoodBankWorkers}}>
             {children}
         </FoodBankWorkersContext.Provider>
     )

@@ -42,12 +42,12 @@ export const gleaningGroupsReducer = (state, action) => {
 }
 
 export const GleaningGroupsContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(gleaningGroupsReducer, {
+    const [state, dispatchGleaningGroups] = useReducer(gleaningGroupsReducer, {
         gleaningGroups: null
     });
 
     return (
-        <GleaningGroupsContext.Provider value={{...state, dispatch}}>
+        <GleaningGroupsContext.Provider value={{...state, dispatchGleaningGroups}}>
             {children}
         </GleaningGroupsContext.Provider>
     )

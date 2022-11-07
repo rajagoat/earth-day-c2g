@@ -32,6 +32,9 @@ const Home = () => {
                     </table>
                 </div>
             </div>
+            <div className="flex">            
+                <iframe src="https://www.google.com/maps/d/embed?mid=1uw9zrihew2XL6DkBb2d6Lws0cDWxcUY&ehbc=2E312F" width="640" height="480" align="middle" className="content-center m-10"></iframe>
+            </div>
         </div>
     );
 }

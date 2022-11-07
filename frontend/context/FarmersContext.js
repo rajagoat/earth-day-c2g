@@ -42,12 +42,12 @@ export const farmersReducer = (state, action) => {
 }
 
 export const FarmersContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(farmersReducer, {
+    const [state, dispatchFarmers] = useReducer(farmersReducer, {
         farmers: null
     });
 
     return (
-        <FarmersContext.Provider value={{...state, dispatch}}>
+        <FarmersContext.Provider value={{...state, dispatchFarmers}}>
             {children}
         </FarmersContext.Provider>
     )

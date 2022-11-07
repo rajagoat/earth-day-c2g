@@ -24,9 +24,11 @@ export const gleanersReducer = (state, action) => {
             return {
                 // action.payload is updated farmer, state.gleaners is past
                 // representation  of gleaners
-                gleaners: [action.payload, ...state.gleaners.filter(farmer =>
-                    farmer._id !== action.payload._id
-                )]
+                gleaners: action.payload
+                
+                // [action.payload, ...state.gleaners.filter(farmer =>
+                //     farmer._id !== action.payload._id
+                // )]
             }
         case 'DELETE_GLEANER':
             return {
@@ -42,12 +44,12 @@ export const gleanersReducer = (state, action) => {
 }
 
 export const GleanersContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(gleanersReducer, {
+    const [state, dispatchGleaners] = useReducer(gleanersReducer, {
         gleaners: null
     });
 
     return (
-        <GleanersContext.Provider value={{...state, dispatch}}>
+        <GleanersContext.Provider value={{...state, dispatchGleaners}}>
             {children}
         </GleanersContext.Provider>
     )
