@@ -2,15 +2,14 @@ import Link from 'next/link'
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Notification } from './Notification'
 
 
 
-var TotalFood=357;
+var TotalFood = 357;
 const navigation = [
   { name: 'Dashboard', href: '/gleaner', current: true },
   { name: 'Team', href: '/gleaner/teaminfo', current: false },
-  { name: 'Food Counter (lbs saved): '+JSON.parse(TotalFood) ,href: '', current: false },
+  { name: 'Food Counter (lbs saved): ' + JSON.parse(TotalFood), href: '', current: false },
 ]
 
 function classNames(...classes) {
@@ -18,8 +17,8 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const[isShown, setNotifications] = useState(false);
-  const handleClick =event=>{
+  const [isShown, setNotifications] = useState(false);
+  const handleClick = event => {
     setNotifications(current => !current);
 
   };
@@ -73,20 +72,51 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
-                  type="button"
-                  className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  onClick={handleClick}
-                >
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-
-                {isShown && (
+                <div>
+                  {/* Notifications dropdown */}
+                  <Menu as="div" className="relative ml-3">
                     <div>
-                        <Notification/>
+                      <Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        <span className="sr-only">Open user menu</span>
+                        <BellIcon className="h-6 w-6" aria-hidden="true" />
+                      </Menu.Button>
                     </div>
-                )}
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              href="/profile"
+                              className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            >
+                              A gleaner just responded to your request!
+                              <p className='text-xs'>2 mins ago</p>
+                            </Link>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              href="/"
+                              className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            >
+                              Your gleaned crops have been dropped off at a food bank.
+                              <p className='text-xs'>1 hour ago</p>
+                            </Link>
+                          )}
+                        </Menu.Item>
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
+                </div>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
@@ -113,7 +143,7 @@ export default function Navbar() {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-                            href="#"
+                            href="/profile"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Your Profile
