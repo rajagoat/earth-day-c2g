@@ -20,7 +20,7 @@ const signupUser = async (req, res) => {
     } = req.body;
     try {
         const user = await User.signup(email, password, typeOfUser);
-        res.status(200).json({_id: user._id});
+        res.status(200).json({_id: user._id, typeOfUser: user.typeOfUser});
     } catch (error) {
         res.status(400).json({error: error.message});
     }
