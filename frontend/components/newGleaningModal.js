@@ -56,7 +56,6 @@ export const GleaningModal = () => {
       priority: isPriority,
       endDate
     }
-    console.log(activity);
     const response = await fetch("http://localhost:4000/api/gleaningactivity", {
       method: 'POST',
       body: JSON.stringify(activity),
