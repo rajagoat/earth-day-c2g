@@ -39,6 +39,8 @@ const createGleaningActivity = async (req, res) => {
     let emptyFields = [];
     const {
         farmer,
+        streetAddress,
+        city,
         status,
         typeOfProduce,
         priority,
@@ -47,6 +49,12 @@ const createGleaningActivity = async (req, res) => {
     } = req.body;
     if (!farmer) {
         emptyFields.push('farmer');
+    }
+    if (!streetAddress) {
+        emptyFields.push('streetAddress');
+    }
+    if (!city) {
+        emptyFields.push('city');
     }
     if (!status) {
         emptyFields.push('status');
@@ -68,6 +76,8 @@ const createGleaningActivity = async (req, res) => {
         if (farmerId) {
             const gleaningActivity = await GleaningActivity.create({
                 farmer,
+                streetAddress,
+                city,
                 status,
                 typeOfProduce,
                 priority,
@@ -76,7 +86,7 @@ const createGleaningActivity = async (req, res) => {
             });
             res.status(200).json(gleaningActivity);
         } else {
-            res.status(404).json({ error: "One or more IDs are invalid." });
+            res.status(404).json({ error: "Farmer ID is invalid." });
         }
     } catch (error) {
         res.status(400).json({ error: error.message });
