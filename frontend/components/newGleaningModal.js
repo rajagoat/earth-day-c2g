@@ -68,7 +68,6 @@ export const GleaningModal = () => {
     if (!response.ok) {
       setError("Error: " + json.error);
     } else {
-      console.log(json);
       gleaningActivitiesDispatch({ type: 'CREATE_ACTIVITY', payload: json });
       setShowModal(false);
     }

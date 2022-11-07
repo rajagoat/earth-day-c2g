@@ -28,7 +28,6 @@ export default function Login() {
             setError("Error: " + json.error);
         } else {
             let path = '/';
-            console.log(json.typeOfUser);
             switch (json.typeOfUser) {
                 case 'Gleaner':
                     path = '/gleaner'

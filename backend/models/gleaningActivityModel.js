@@ -33,9 +33,9 @@ const gleaningActivitySchema = new Schema({
                 'Complete',
                 'Cancelled'
             ],
-            default: 'New',
             message: '{VALUE} is not supported for status'
         },
+        default: 'New'
     },
     typeOfProduce: {
         type: String,
