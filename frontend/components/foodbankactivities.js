@@ -1,16 +1,21 @@
 import { useEffect } from "react";
-import Link from "next/link";
 import Router from 'next/router';
+
 // import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useGleaningActivitiesContext } from "../hooks/useGleaningActivitiesContext";
+
+import Farmer from "../components/Farmer";
 
 const GleaningActivities = () => {
     const { user } = useAuthContext();
     const { gleaningActivities, dispatch } = useGleaningActivitiesContext();
 
     useEffect(() => {
+        if (!user) {
+            Router.push("/");
+        }
         const fetchActivities = async () => {
             const response = await fetch("http://localhost:4000/api/gleaningactivity");
             const json = await response.json();
@@ -33,16 +38,25 @@ const GleaningActivities = () => {
     return (
         <tbody>
             {gleaningActivities && gleaningActivities.map(activity =>
-                <tr>
+                <tr key={activity._id}>
+                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <Farmer id={activity.farmer} />
+                    </th>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                        <h1 className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.farmer}</h1>
+                        <h1 className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.typeOfProduce}</h1>
                     </th>
 
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {new Date(activity.createdAt).toDateString()}
+                        {new Date(activity.endDate).toDateString()}
                     </td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{new Date(activity.endDate).toDateString()}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.streetAddress}, {activity.city}</td>
+                    <td className="text-blue-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <a
+                            href={`http://maps.google.com/?q=${activity.streetAddress},${activity.city}`}
+                            target="_blank"
+                        >
+                            {activity.streetAddress}, {activity.city}
+                        </a>
+                    </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         <button
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
