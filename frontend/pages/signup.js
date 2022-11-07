@@ -8,16 +8,44 @@ export default function Signup() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [typeOfUser, setTypeOfUser] = useState('');
-    const [emptyFields, setEmptyFields] = useState([]);
     const [error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
-        console.log(typeOfUser);
         e.preventDefault();
-        Router.push({
-            pathname: "/userinfo",
-            query: typeOfUser
-        });
+        if (password != confirmPassword) {
+            setError('Error: Passwords Mismatch');
+        }
+        if (!typeOfUser) {
+            setError("Error: Please select what type of user you are.");
+        }
+        else {
+            const user = {
+                email,
+                username,
+                password,
+                typeOfUser
+            };
+            const response = await fetch("http://localhost:4000/api/user/signup", {
+                method: 'POST',
+                body: JSON.stringify(user),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const json = await response.json();
+            if (!response.ok) {
+                setError("Error: " + json.error);
+            } else {
+                Router.push({
+                    pathname: "/userinfo",
+                    query:
+                    {
+                        typeOfUser,
+                        _id: json._id
+                    }
+                });
+            }
+        }
     };
 
     return (
@@ -54,6 +82,8 @@ export default function Signup() {
                                             id="email"
                                             className="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="example@mail.com"
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -67,6 +97,8 @@ export default function Signup() {
                                             name="username"
                                             id="username"
                                             className="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                            onChange={(e) => setUsername(e.target.value)}
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -80,6 +112,8 @@ export default function Signup() {
                                             name="password"
                                             id="password"
                                             className="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -93,6 +127,8 @@ export default function Signup() {
                                             name="confirmPassword"
                                             id="confirmPassword"
                                             className="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -102,37 +138,37 @@ export default function Signup() {
                                         <div className="mt-2 space-y-4">
                                             <div className="flex items-center">
                                                 <input
-                                                    id="gleaner"
+                                                    id="Gleaner"
                                                     name="typeofuser"
                                                     type="radio"
                                                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                                    onChange={(e) => setTypeOfUser(e.target.value)}
+                                                    onChange={(e) => setTypeOfUser(e.target.id)}
                                                 />
-                                                <label htmlFor="gleaner" className="ml-3 block text-sm font-medium text-gray-700">
+                                                <label htmlFor="Gleaner" className="ml-3 block text-sm font-medium text-gray-700">
                                                     Gleaner
                                                 </label>
                                             </div>
                                             <div className="flex items-center">
                                                 <input
-                                                    id="farmer"
+                                                    id="Farmer"
                                                     name="typeofuser"
                                                     type="radio"
                                                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                                    onChange={(e) => setTypeOfUser(e.target.value)}
+                                                    onChange={(e) => setTypeOfUser(e.target.id)}
                                                 />
-                                                <label htmlFor="farmer" className="ml-3 block text-sm font-medium text-gray-700">
+                                                <label htmlFor="Farmer" className="ml-3 block text-sm font-medium text-gray-700">
                                                     Farmer
                                                 </label>
                                             </div>
                                             <div className="flex items-center">
                                                 <input
-                                                    id="foodbankworker"
+                                                    id="Food Bank Worker"
                                                     name="typeofuser"
                                                     type="radio"
                                                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                                    onChange={(e) => setTypeOfUser(e.target.value)}
+                                                    onChange={(e) => setTypeOfUser(e.target.id)}
                                                 />
-                                                <label htmlFor="foodbankworker" className="ml-3 block text-sm font-medium text-gray-700">
+                                                <label htmlFor="Food Bank Worker" className="ml-3 block text-sm font-medium text-gray-700">
                                                     Food Bank Worker
                                                 </label>
                                             </div>
@@ -150,6 +186,11 @@ export default function Signup() {
                                 Create Account
                             </button>
                         </div>
+                        {error &&
+                            <div>
+                                {error}
+                            </div>
+                        }
                     </form>
                 </div>
             </div>

@@ -20,6 +20,7 @@ import { useRouter } from "next/router"
 export default function UserInfo() {
     const router = useRouter();
     const typeOfUser = router.query;
+    // test what typeOfUser using hasOwnProperty
     console.log(typeOfUser);
 
     return (
