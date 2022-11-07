@@ -4,11 +4,13 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Notification } from './Notification'
 
+
+
 var TotalFood=357;
 const navigation = [
   { name: 'Dashboard', href: '/gleaner', current: true },
   { name: 'Team', href: '/gleaner/teaminfo', current: false },
-  { name: 'Food Counter: '+JSON.parse(TotalFood) +' lbs saved till date',href: '', current: false },
+  { name: 'Food Counter (lbs saved): '+JSON.parse(TotalFood) ,href: '', current: false },
 ]
 
 function classNames(...classes) {
@@ -23,7 +25,7 @@ export default function Navbar() {
   };
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-400">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -59,7 +61,7 @@ export default function Navbar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-900 hover:bg-gray-900 hover:text-white',
                           'px-3 py-2 rounded-md text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
