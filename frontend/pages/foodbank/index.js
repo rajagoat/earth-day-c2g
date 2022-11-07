@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
-import GleaningActivities from "./foodbankactivities";
+import GleaningActivities from "../../components/foodbankactivities";
 
 const Home = () => {
     return (

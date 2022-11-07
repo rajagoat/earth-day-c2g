@@ -56,9 +56,6 @@ const createGleaningActivity = async (req, res) => {
     if (!city) {
         emptyFields.push('city');
     }
-    if (!status) {
-        emptyFields.push('status');
-    }
     if (!typeOfProduce) {
         emptyFields.push('typeOfProduce');
     }

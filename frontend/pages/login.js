@@ -2,10 +2,13 @@ import Link from 'next/link'
 import Router from 'next/router';
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import { useState } from 'react';
+import { useAuthContext } from '../hooks/useAuthContext'
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+    const { dispatch } = useAuthContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,7 +42,7 @@ export default function Login() {
                 default:
                     path;
             }
-            console.log(path);
+            dispatch({ type: 'LOGIN', payload: json })
             Router.push({
                 pathname: path,
                 query:
@@ -133,8 +136,13 @@ export default function Login() {
                                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                     <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
                                 </span>
-                                    Sign in
+                                Sign in
                             </button>
+                            {error &&
+                                <div>
+                                    {error}
+                                </div>
+                            }
                         </div>
                     </form>
                 </div>

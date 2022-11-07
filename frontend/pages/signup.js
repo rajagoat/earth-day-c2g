@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import Router from 'next/router';
 import { useState } from 'react';
+import { useAuthContext } from '../hooks/useAuthContext'
 
 export default function Signup() {
+    const { dispatch } = useAuthContext();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -34,6 +37,7 @@ export default function Signup() {
             if (!response.ok) {
                 setError("Error: " + json.error);
             } else {
+                dispatch({type: 'LOGIN', payload: json})
                 Router.push({
                     pathname: "/userinfo",
                     query:

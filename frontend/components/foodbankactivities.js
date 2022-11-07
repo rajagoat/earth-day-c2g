@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import Link from "next/link";
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+// import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
-import { useGleaningActivitiesContext } from "../../hooks/useGleaningActivitiesContext";
+import { useGleaningActivitiesContext } from "../hooks/useGleaningActivitiesContext";
 
 const GleaningActivities = () => {
     const { gleaningActivities, dispatch } = useGleaningActivitiesContext();
@@ -11,10 +11,13 @@ const GleaningActivities = () => {
         const fetchActivities = async () => {
             const response = await fetch("http://localhost:4000/api/gleaningactivity");
             const json = await response.json();
+            
             if (response.ok) {
                 dispatch({
                     type: 'SET_ACTIVITIES',
-                    payload: json
+                    payload: json.filter(activity=>
+                        activity.foodBank === '6366136a3ebb1a6e1000387c'
+                    )
                 })
             }
         };
@@ -27,7 +30,7 @@ const GleaningActivities = () => {
             {gleaningActivities && gleaningActivities.map(activity =>
                  <tr>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                        <h1 className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.farmer}</h1>
+                        <h1 className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.foodBank}</h1>
                     </th>
                     
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
@@ -37,7 +40,7 @@ const GleaningActivities = () => {
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.streetAddress}, {activity.city}</td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Volunteer!
+                            View
                         </button>
                     </td>
                 </tr>

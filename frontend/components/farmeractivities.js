@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 // import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
-import { useGleaningActivitiesContext } from "../../hooks/useGleaningActivitiesContext";
+import { useGleaningActivitiesContext } from "../hooks/useGleaningActivitiesContext";
 
 const GleaningActivities = () => {
     const { gleaningActivities, dispatch } = useGleaningActivitiesContext();
@@ -16,7 +16,7 @@ const GleaningActivities = () => {
                 dispatch({
                     type: 'SET_ACTIVITIES',
                     payload: json.filter(activity=>
-                        activity.foodBank === '6366136a3ebb1a6e1000387c'
+                        activity.farmer === '636758fd4b37611a612dcc4a'
                     )
                 })
             }
@@ -30,7 +30,7 @@ const GleaningActivities = () => {
             {gleaningActivities && gleaningActivities.map(activity =>
                  <tr>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                        <h1 className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.foodBank}</h1>
+                        <h1 className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.farmer}</h1>
                     </th>
                     
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

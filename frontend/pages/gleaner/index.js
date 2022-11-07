@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
-import GleaningActivities from "./gleaneractivities";
+import GleaningActivities from "../../components/gleaneractivities";
 
 const Home = () => {
     return (

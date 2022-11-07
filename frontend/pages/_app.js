@@ -5,22 +5,25 @@ import { FoodBanksContextProvider } from '../context/FoodBanksContext';
 import { FoodBankWorkersContextProvider } from '../context/FoodBankWorkersContext';
 import { GleaningActivitiesContextProvider } from '../context/GleaningActivitiesContext';
 import { GleaningGroupsContextProvider } from '../context/GleaningGroupsContext';
+import { AuthContextProvider } from '../context/AuthContext';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <FarmersContextProvider>
-      <GleanersContextProvider>
-        <FoodBanksContextProvider>
-          <FoodBankWorkersContextProvider>
-            <GleaningActivitiesContextProvider>
-              <GleaningGroupsContextProvider>
-                <Component {...pageProps} />
-              </GleaningGroupsContextProvider>
-            </GleaningActivitiesContextProvider>
-          </FoodBankWorkersContextProvider>
-        </FoodBanksContextProvider>
-      </GleanersContextProvider>
-    </FarmersContextProvider>
+    <AuthContextProvider>
+      <FarmersContextProvider>
+        <GleanersContextProvider>
+          <FoodBanksContextProvider>
+            <FoodBankWorkersContextProvider>
+              <GleaningActivitiesContextProvider>
+                <GleaningGroupsContextProvider>
+                  <Component {...pageProps} />
+                </GleaningGroupsContextProvider>
+              </GleaningActivitiesContextProvider>
+            </FoodBankWorkersContextProvider>
+          </FoodBanksContextProvider>
+        </GleanersContextProvider>
+      </FarmersContextProvider>
+    </AuthContextProvider>
   )
 }
 
