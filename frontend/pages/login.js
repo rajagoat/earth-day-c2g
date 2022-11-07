@@ -1,7 +1,55 @@
 import Link from 'next/link'
+import Router from 'next/router';
 import { LockClosedIcon } from '@heroicons/react/20/solid'
+import { useState } from 'react';
 
 export default function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const user = {
+            email,
+            password,
+        };
+        const response = await fetch("http://localhost:4000/api/user/login", {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const json = await response.json();
+        if (!response.ok) {
+            setError("Error: " + json.error);
+        } else {
+            let path = '/';
+            console.log(json.typeOfUser);
+            switch (json.typeOfUser) {
+                case 'Gleaner':
+                    path = '/gleaner'
+                    break;
+                case 'Farmer':
+                    path = '/farmer'
+                    break;
+                case 'Food Bank Worker':
+                    path = 'foodbank'
+                    break;
+                default:
+                    path;
+            }
+            console.log(path);
+            Router.push({
+                pathname: path,
+                query:
+                {
+                    _id: json._id
+                }
+            }, path);
+        }
+    };
+
     return (
         <>
             <div className="flex h-screen bg-gray-50 items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -22,21 +70,22 @@ export default function Login() {
                             </Link>
                         </p>
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
+                    <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                         <input type="hidden" name="remember" defaultValue="true" />
                         <div className="-space-y-px rounded-md shadow-sm">
                             <div>
-                                <label htmlFor="username" className="sr-only">
-                                    Username
+                                <label htmlFor="email" className="sr-only">
+                                    Email
                                 </label>
                                 <input
-                                    id="username"
-                                    name="username"
-                                    type="username"
-                                    autoComplete="username"
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    autoComplete="email"
                                     required
                                     className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                    placeholder="Username"
+                                    placeholder="user@email.com"
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
                             <div>
@@ -51,6 +100,7 @@ export default function Login() {
                                     required
                                     className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     placeholder="Password"
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -77,17 +127,13 @@ export default function Login() {
 
                         <div>
                             <button
-                                // remember to uncomment this later
-                                // type="submit"
+                                type="submit"
                                 className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                     <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
                                 </span>
-                                {/* Wrapping this in a link for now but needs authentication later*/}
-                                <Link href="/gleaner">
                                     Sign in
-                                </Link>
                             </button>
                         </div>
                     </form>

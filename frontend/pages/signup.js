@@ -1,10 +1,9 @@
 import Link from 'next/link'
-import Router, { useRouter } from 'next/router';
+import Router from 'next/router';
 import { useState } from 'react';
 
 export default function Signup() {
     const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [typeOfUser, setTypeOfUser] = useState('');
@@ -21,7 +20,6 @@ export default function Signup() {
         else {
             const user = {
                 email,
-                username,
                 password,
                 typeOfUser
             };
@@ -83,21 +81,6 @@ export default function Signup() {
                                             className="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="example@mail.com"
                                             onChange={(e) => setEmail(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-span-3 sm:col-span-2 mt-3">
-                                    <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                                        Username
-                                    </label>
-                                    <div className="mt-1 flex rounded-md shadow-sm">
-                                        <input
-                                            type="text"
-                                            name="username"
-                                            id="username"
-                                            className="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                            onChange={(e) => setUsername(e.target.value)}
                                             required
                                         />
                                     </div>
