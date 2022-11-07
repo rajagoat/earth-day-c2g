@@ -59,8 +59,8 @@ export default function Login() {
                     <div>
                         <img
                             className="mx-auto h-12 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                            alt="Your Company"
+                            src="https://cdn.discordapp.com/attachments/1038532635263250502/1038945953903824977/gleanrlogo.png"
+                            alt="Gleanr Logo"
                         />
                         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
                             Log in to your account
