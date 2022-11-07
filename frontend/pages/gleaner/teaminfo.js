@@ -1,9 +1,23 @@
+import Navbar from "../../components/Navbar";
+import UserCards from "../../components/userCards";
+
 const TeamInfo = () => {
     return (
+
+
         <div>
-            <h1>Team Information</h1>
+            <Navbar />
+            <div className="container" > 
+            <div className='grid-item1' > <UserCards /></div>
+            <div className='grid-item2' > <UserCards /></div>
+            <div className='grid-item3' > <UserCards /></div>  
+  
+                
+            </div>
+            
+
         </div>
     );
 }
- 
+
 export default TeamInfo;

@@ -5,7 +5,7 @@ import { FoodBanksContextProvider } from '../context/FoodBanksContext';
 import { FoodBankWorkersContextProvider } from '../context/FoodBankWorkersContext';
 import { GleaningActivitiesContextProvider } from '../context/GleaningActivitiesContext';
 import { GleaningGroupsContextProvider } from '../context/GleaningGroupsContext';
-
+import "../styles/styles.css"
 function MyApp({ Component, pageProps }) {
   return (
     <FarmersContextProvider>

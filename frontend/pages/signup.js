@@ -55,7 +55,7 @@ export default function Signup() {
                     <div>
                         <img
                             className="mx-auto h-12 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                            src="https://cdn.discordapp.com/attachments/1038532635263250502/1038945953903824977/gleanrlogo.png"
                             alt="Your Company"
                         />
                         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
