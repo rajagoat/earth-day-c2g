@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
+import GleaningActivities from "./foodbankactivities";
 
 const Home = () => {
     return (
@@ -24,7 +25,8 @@ const Home = () => {
                                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">Send Intrest</th>
                             </tr>
                         </thead>
-                        <tbody>
+
+                        {/* <tbody>
                             <tr>
                                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                                     <img src="https://demos.creative-tim.com/notus-nextjs/img/bootstrap.jpg" className="h-12 w-12 bg-white rounded-full border" alt="..." />
@@ -130,7 +132,8 @@ const Home = () => {
                                     </div>
                                 </td>
                             </tr>
-                        </tbody>
+                        </tbody> */}
+                        <GleaningActivities/>
                     </table>
                 </div>
             </div>
