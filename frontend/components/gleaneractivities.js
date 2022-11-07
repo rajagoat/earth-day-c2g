@@ -31,7 +31,7 @@ const GleaningActivities = () => {
             })
         }
     }
-    
+
     useEffect(() => {
         if (!user) {
             Router.push("/");
@@ -68,7 +68,7 @@ const GleaningActivities = () => {
             {gleaningActivities && gleaningActivities.map(activity =>
                 <tr key={activity._id}>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <Farmer id={activity.farmer}/>
+                        <Farmer id={activity.farmer} />
                     </th>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                         <h1 className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.typeOfProduce}</h1>
@@ -78,18 +78,25 @@ const GleaningActivities = () => {
                         {new Date(activity.createdAt).toDateString()}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{new Date(activity.endDate).toDateString()}</td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.streetAddress}, {activity.city}</td>
+                    <td className="text-blue-500 border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <a
+                            href={`http://maps.google.com/?q=${activity.streetAddress},${activity.city}`}
+                            target="_blank"
+                        >
+                            {activity.streetAddress}, {activity.city}
+                        </a>
+                    </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         {activity?.gleaningGroup === gleaners?.gleaningGroup ?
                             <button
                                 disabled={true}
-                                className="bg-white text-blue-500 font-bold py-2 px-4 rounded"
+                                className="bg-white text-red-500 font-bold py-2 px-4 rounded"
                             >
                                 Request Sent
                             </button>
                             :
                             <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                                 onClick={() => addToDB(gleaners.gleaningGroup, activity._id)}
                             >
                                 Volunteer!

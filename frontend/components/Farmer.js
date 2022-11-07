@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {useFarmersContext} from "../hooks/useFarmersContext";
 
 const Farmer = ({ id }) => {
-    const { farmers, dispatch } = useFarmersContext();
+    const { dispatch } = useFarmersContext();
+    const [name, setName] = useState('');
 
     useEffect(() => {
         const fetchFarmer = async () => {
@@ -13,6 +14,7 @@ const Farmer = ({ id }) => {
                     type: 'SET_FARMER',
                     payload: json
                 })
+                setName(json.firstName + ' ' + json.lastName);
             }
         }
 
@@ -21,7 +23,7 @@ const Farmer = ({ id }) => {
 
     return (
         <>
-            {`${farmers?.firstName} ${farmers?.lastName}`}
+            {name}
         </>
     );
 }
