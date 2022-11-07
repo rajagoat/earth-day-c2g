@@ -43,7 +43,7 @@ const createFoodBank = async (req, res) => {
         phoneNumber,
         emailAddress,
         capacity,
-        distance
+        distanceRange
     } = req.body;
     if (!name) {
         emptyFields.push('name');
@@ -66,8 +66,8 @@ const createFoodBank = async (req, res) => {
     if (!capacity) {
         emptyFields.push('capacity');
     }
-    if (!distance) {
-        emptyFields.push('distance');
+    if (!distanceRange) {
+        emptyFields.push('distanceRange');
     }
     if (emptyFields.length > 0) {
         return res.status(400).json({
@@ -85,7 +85,7 @@ const createFoodBank = async (req, res) => {
             phoneNumber,
             emailAddress,
             capacity,
-            distance
+            distanceRange
         });
         res.status(200).json(foodBank);
     } catch (error) {

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Router, { useRouter } from 'next/router';
+import Router from 'next/router';
 import { useState } from 'react';
 
 export default function Signup() {
@@ -43,7 +43,7 @@ export default function Signup() {
                         typeOfUser,
                         _id: json._id
                     }
-                });
+                }, "/userinfo");
             }
         }
     };

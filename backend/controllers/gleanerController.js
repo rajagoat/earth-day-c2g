@@ -42,9 +42,10 @@ const createGleaner = async (req, res) => {
         lastName,
         postalCode,
         city,
+        province,
         phoneNumber,
         gleaningGroup,
-        distance
+        distanceRange
     } = req.body;
     if (!_id) {
         emptyFields.push('_id');
@@ -61,11 +62,14 @@ const createGleaner = async (req, res) => {
     if (!city) {
         emptyFields.push('city');
     }
+    if (!province) {
+        emptyFields.push('province');
+    }
     if (!gleaningGroup) {
         emptyFields.push('gleaningGroup');
     }
-    if (!distance) {
-        emptyFields.push('distance');
+    if (!distanceRange) {
+        emptyFields.push('distanceRange');
     }
     if (emptyFields.length > 0) {
         return res.status(400).json({
@@ -81,9 +85,11 @@ const createGleaner = async (req, res) => {
                 firstName,
                 lastName,
                 postalCode,
+                city,
+                province,
                 phoneNumber,
                 gleaningGroup,
-                distance
+                distanceRange
             });
             res.status(200).json(gleaner);
         } else {

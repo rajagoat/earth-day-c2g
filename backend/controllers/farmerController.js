@@ -89,11 +89,12 @@ const createFarmer = async (req, res) => {
                 province,
                 postalCode,
                 phoneNumber,
+                capacity,
                 isValidated
             });
             res.status(200).json(farmer);
         } else {
-            res.status(404).json({error: "No user account is linked to the ID given."});
+            res.status(404).json({ error: "No user account is linked to the ID given." });
         }
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -101,17 +102,17 @@ const createFarmer = async (req, res) => {
 };
 
 // delete a single farmer's info
-const deleteFarmer = async(req, res) => {
+const deleteFarmer = async (req, res) => {
     const { id } = req.params;
     if (!ObjectId.isValid(id)) {
-        return res.status(404).json({error: "No such farmer found."});
+        return res.status(404).json({ error: "No such farmer found." });
     }
     try {
         // both the farmer instance and the user instance are deleted
         const farmer = await Farmer.findOneAndDelete({ _id: id });
-        const user = await User.findOneAndDelete({_id: id});
+        const user = await User.findOneAndDelete({ _id: id });
         if (!farmer || !user) {
-            return res.status(404).json({error: "Account is not linked properly."});
+            return res.status(404).json({ error: "Account is not linked properly." });
         } else {
             res.status(200).json(farmer);
         }
@@ -121,14 +122,14 @@ const deleteFarmer = async(req, res) => {
 };
 
 // update a single farmer's info
-const updateFarmer = async(req, res) => {
+const updateFarmer = async (req, res) => {
     const { id } = req.params;
     if (!ObjectId.isValid(id)) {
-        return res.status(404).json({error: "No such farmer found."});
+        return res.status(404).json({ error: "No such farmer found." });
     }
     try {
         const farmer = await Farmer.findOneAndUpdate(
-            {_id: id},
+            { _id: id },
             { ...req.body },
             // new: true returns updated value instead of old one
             { new: true }

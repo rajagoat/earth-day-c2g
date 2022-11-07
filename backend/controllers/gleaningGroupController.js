@@ -37,17 +37,15 @@ const createGleaningGroup = async (req, res) => {
     let emptyFields = [];
     const {
         name,
+        city,
         leader,
         gleaners
     } = req.body;
     if (!name) {
         emptyFields.push('name');
     }
-    if (!leader) {
-        emptyFields.push('leader');
-    }
-    if (!gleaners) {
-        emptyFields.push('gleaners');
+    if (!city) {
+        emptyFields.push('city');
     }
     if (emptyFields.length > 0) {
         return res.status(400).json({
@@ -56,17 +54,13 @@ const createGleaningGroup = async (req, res) => {
         });
     }
     try {
-        const gleanerIds = gleaners.map(ObjectId);
-        const foundGleanerIds = await Gleaner.find({ _id: { $in: gleanerIds } });
-        if (gleanerIds.length === foundGleanerIds.length) {
-            const gleaningGroup = await GleaningGroup.create({
-                name,
-                gleaners
-            });
-            res.status(200).json(gleaningGroup);
-        } else {
-            res.status(404).json({ error: "One or more of the users have invalid IDs." });
-        }
+        const gleaningGroup = await GleaningGroup.create({
+            name,
+            city,
+            leader,
+            gleaners
+        });
+        res.status(200).json(gleaningGroup);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

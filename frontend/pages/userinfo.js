@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-
+import { useEffect, useState } from "react";
 /* 
 <h1>More User Information</h1>
             <h2>All users need:</h2>
@@ -19,9 +19,31 @@ import { useRouter } from "next/router"
 */
 export default function UserInfo() {
     const router = useRouter();
-    const typeOfUser = router.query;
-    // test what typeOfUser using hasOwnProperty
-    console.log(typeOfUser);
+    const [isGleaner, setIsGleaner] = useState(false);
+    const [isFarmer, setIsFarmer] = useState(false);
+    const [isFoodBankWorker, setIsFoodBankWorker] = useState(false);
+    useEffect(() => {
+        const userInfo = router.query;
+        if (Object.keys(router.query).length !== 2) {
+            router.push("/");
+        }
+        if (userInfo['typeOfUser'] === 'Gleaner') setIsGleaner(true);
+        if (userInfo['typeOfUser'] === 'Farmer') setIsFarmer(true);
+        if (userInfo['typeOfUser'] === 'Food Bank Worker') setIsFoodBankWorker(true);
+    }, []);
+
+    const [firstName, setFirstName] = useState(''); // all
+    const [lastName, setLastName] = useState(''); // all
+    const [streetAddress, setStreetAddress] = useState(''); // farmer
+    const [city, setCity] = useState(''); // gleaner & farmer
+    const [province, setProvince] = useState(''); // gleaner & farmer 
+    const [postalCode, setPostalCode] = useState(''); // gleaner & farmer
+    const [phoneNumber, setPhoneNumber] = useState(''); // gleaner & farmer
+    const [distanceRange, setDistanceRange] = useState(0); // gleaner
+    const [capacity, setCapacity] = useState(0); // farmer
+    const [foodBank, setFoodBank] = useState(''); // food bank worker
+    const [gleaningGroup, setGleaningGroup] = useState(''); // gleaner
+    const [startDate, setStartDate] = useState(new Date());
 
     return (
         <>
@@ -44,8 +66,10 @@ export default function UserInfo() {
                     <div className="md:grid md:grid-cols-3 md:gap-6">
                         <div className="md:col-span-1">
                             <div className="px-4 sm:px-0">
-                                <h3 className="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
-                                <p className="mt-1 text-sm text-gray-600">Use a permanent address where you can receive mail.</p>
+                                <h3 className="text-lg font-medium leading-6 text-gray-900">{isGleaner && 'Gleaner'} {isFarmer && 'Farmer'} {isFoodBankWorker && 'Food Bank Worker'} Information</h3>
+                                {isGleaner && <p className="mt-1 text-sm text-gray-600">Your location is used to find nearby gleaning activities.</p>}
+                                {isFarmer && <p className="mt-1 text-sm text-gray-600">Your location is used to notify nearby gleaners when you have a new gleaning opportunity.</p>}
+                                {isFoodBankWorker && <p className="mt-1 text-sm text-gray-600">This information helps us send you the notifications when nearby gleaning activities are ready to be picked up.</p>}
                             </div>
                         </div>
                         <div className="mt-5 md:col-span-2 md:mt-0">
@@ -55,7 +79,7 @@ export default function UserInfo() {
                                         <div className="grid grid-cols-6 gap-6">
                                             <div className="col-span-6 sm:col-span-3">
                                                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                                                    First name
+                                                    First name*
                                                 </label>
                                                 <input
                                                     type="text"
@@ -68,7 +92,7 @@ export default function UserInfo() {
 
                                             <div className="col-span-6 sm:col-span-3">
                                                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                                                    Last name
+                                                    Last name*
                                                 </label>
                                                 <input
                                                     type="text"
@@ -79,38 +103,22 @@ export default function UserInfo() {
                                                 />
                                             </div>
 
-                                            <div className="col-span-6 sm:col-span-4">
-                                                <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-                                                    Email address
+                                            <div className="col-span-6 sm:col-span-3">
+                                                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                                                    Phone Number
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    name="email-address"
-                                                    id="email-address"
-                                                    autoComplete="email"
+                                                    name="first-name"
+                                                    id="first-name"
+                                                    autoComplete="given-name"
                                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                                 />
                                             </div>
 
-                                            <div className="col-span-6 sm:col-span-3">
-                                                <label htmlFor="country" className="block text-sm font-medium text-gray-700">
-                                                    Country
-                                                </label>
-                                                <select
-                                                    id="country"
-                                                    name="country"
-                                                    autoComplete="country-name"
-                                                    className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                                >
-                                                    <option>United States</option>
-                                                    <option>Canada</option>
-                                                    <option>Mexico</option>
-                                                </select>
-                                            </div>
-
                                             <div className="col-span-6">
                                                 <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
-                                                    Street address
+                                                    Street address*
                                                 </label>
                                                 <input
                                                     type="text"
@@ -123,7 +131,7 @@ export default function UserInfo() {
 
                                             <div className="col-span-6 sm:col-span-6 lg:col-span-2">
                                                 <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                                                    City
+                                                    City*
                                                 </label>
                                                 <input
                                                     type="text"
@@ -136,7 +144,7 @@ export default function UserInfo() {
 
                                             <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                                                 <label htmlFor="region" className="block text-sm font-medium text-gray-700">
-                                                    State / Province
+                                                    Province*
                                                 </label>
                                                 <input
                                                     type="text"
@@ -149,13 +157,35 @@ export default function UserInfo() {
 
                                             <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                                                 <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
-                                                    ZIP / Postal code
+                                                    Postal code*
                                                 </label>
                                                 <input
                                                     type="text"
                                                     name="postal-code"
                                                     id="postal-code"
                                                     autoComplete="postal-code"
+                                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                />
+                                            </div>
+
+                                            <div className="col-span-6 sm:col-span-3">
+                                                <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country</label>
+                                                <select id="country" name="country" autoComplete="country-name" className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                                    <option>United States</option>
+                                                    <option>Canada</option>
+                                                    <option>Mexico</option>
+                                                </select>
+                                            </div>
+
+                                            <div className="col-span-6 sm:col-span-3">
+                                                <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                                                    Last name*
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    name="last-name"
+                                                    id="last-name"
+                                                    autoComplete="family-name"
                                                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                                 />
                                             </div>

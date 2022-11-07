@@ -23,6 +23,10 @@ const gleanerSchema = new Schema({
         type: String,
         required: true
     },
+    province: {
+        type: String,
+        required: true
+    },
     phoneNumber: {
         type: String,
     },
