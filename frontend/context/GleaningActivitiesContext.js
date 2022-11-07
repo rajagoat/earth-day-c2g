@@ -4,23 +4,23 @@ export const GleaningActivitiesContext = createContext();
 
 export const gleaningActivitiesReducer = (state, action) => {
     switch (action.type) {
-        case 'SET_FARMERS':
+        case 'SET_ACTIVITIES':
             return {
                 // action.payload is all gleaningActivities
                 gleaningActivities: action.payload
             }
-        case 'SET_FARMER':
+        case 'SET_ACTIVITY':
             return {
                 // action.payload is one gleaningActivity
                 gleaningActivities: action.payload
             }
-        case 'CREATE_FARMER':
+        case 'CREATE_ACTIVITY':
             return {
                 // action.payload is new gleaningActivity, state.gleaningActivities is past
                 // representation of gleaningActivities
                 gleaningActivities: [action.payload, ...state.gleaningActivities]
             }
-        case 'UPDATE_FARMER':
+        case 'UPDATE_ACTIVITY':
             return {
                 // action.payload is updated gleaningActivity, state.gleaningActivities is past
                 // representation  of gleaningActivities
@@ -28,7 +28,7 @@ export const gleaningActivitiesReducer = (state, action) => {
                     gleaningActivity._id !== action.payload._id
                 )]
             }
-        case 'DELETE_FARMER':
+        case 'DELETE_ACTIVITY':
             return {
                 // action.payload is deleted gleaningActivity, state.gleaningActivities is past
                 // representation of gleaningActivities
