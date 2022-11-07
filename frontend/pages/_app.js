@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import "../styles/styles.css"
 import { FarmersContextProvider } from '../context/FarmersContext';
 import { GleanersContextProvider } from '../context/GleanersContext';
 import { FoodBanksContextProvider } from '../context/FoodBanksContext';
