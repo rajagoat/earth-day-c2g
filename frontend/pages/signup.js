@@ -1,6 +1,25 @@
 import Link from 'next/link'
+import Router, { useRouter } from 'next/router';
+import { useState } from 'react';
 
 export default function Signup() {
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [typeOfUser, setTypeOfUser] = useState('');
+    const [emptyFields, setEmptyFields] = useState([]);
+    const [error, setError] = useState(null);
+
+    const handleSubmit = async (e) => {
+        console.log(typeOfUser);
+        e.preventDefault();
+        Router.push({
+            pathname: "/userinfo",
+            query: typeOfUser
+        });
+    };
+
     return (
         <>
             <div className="flex h-screen bg-gray-50 items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -21,8 +40,7 @@ export default function Signup() {
                             </Link>
                         </p>
                     </div>
-                    <form className="mt-8 space-y-6" action="#" method="POST">
-                        <input type="hidden" name="remember" defaultValue="true" />
+                    <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                         <div className="-space-y-px rounded-md">
                             <div>
                                 <div className="col-span-3 sm:col-span-2">
@@ -88,6 +106,7 @@ export default function Signup() {
                                                     name="typeofuser"
                                                     type="radio"
                                                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                                    onChange={(e) => setTypeOfUser(e.target.value)}
                                                 />
                                                 <label htmlFor="gleaner" className="ml-3 block text-sm font-medium text-gray-700">
                                                     Gleaner
@@ -99,6 +118,7 @@ export default function Signup() {
                                                     name="typeofuser"
                                                     type="radio"
                                                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                                    onChange={(e) => setTypeOfUser(e.target.value)}
                                                 />
                                                 <label htmlFor="farmer" className="ml-3 block text-sm font-medium text-gray-700">
                                                     Farmer
@@ -110,6 +130,7 @@ export default function Signup() {
                                                     name="typeofuser"
                                                     type="radio"
                                                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                                    onChange={(e) => setTypeOfUser(e.target.value)}
                                                 />
                                                 <label htmlFor="foodbankworker" className="ml-3 block text-sm font-medium text-gray-700">
                                                     Food Bank Worker
@@ -123,14 +144,10 @@ export default function Signup() {
 
                         <div>
                             <button
-                                // remember to uncomment this later
-                                // type="submit"
+                                type="submit"
                                 className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
-                                {/* Wrapping this in a link for now but needs authentication later*/}
-                                <Link href="/userinfo">
-                                    Create Account
-                                </Link>
+                                Create Account
                             </button>
                         </div>
                     </form>
