@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import Link from "next/link";
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
 import { useGleaningActivitiesContext } from "../../hooks/useGleaningActivitiesContext";
 
@@ -21,17 +23,26 @@ const GleaningActivities = () => {
     }, [dispatch]);
 
     return (
-        <div>
-            <h1>Activities page</h1>
+        <tbody>
             {gleaningActivities && gleaningActivities.map(activity =>
-                <div key={activity._id}>
-                    <p>{activity.farmer}</p>
-                </div>
+                 <tr>
+                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+                        <h1 className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.farmer}</h1>
+                    </th>
+                    
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        {activity.createdAt}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.endDate}</td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.streetAddress}, {activity.city}</td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Volunteer!
+                        </button>
+                    </td>
+                </tr>
             )}
-            <form>
-
-            </form>
-        </div>
+        </tbody>
     );
 }
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
+import GleaningActivities from "./gleaneractivities";
 
 const Home = () => {
     return (
@@ -17,7 +18,7 @@ const Home = () => {
                     <table className="items-center w-full bg-transparent border-collapse">
                         <thead>
                             <tr>
-                                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">Project (Farm)</th>
+                                <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">Project (Farmer)</th>
                                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">Start Date</th>
                                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">End Date</th>
                                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">Location</th>
@@ -25,47 +26,9 @@ const Home = () => {
                                 <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
                             </tr>
                         </thead>
+                        
+                        <GleaningActivities/>
 
-                        <tbody>
-                            <tr>
-                                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                                    <img src="https://demos.creative-tim.com/notus-nextjs/img/bootstrap.jpg" className="h-12 w-12 bg-white rounded-full border" alt="..." />
-                                    <span className="ml-3 font-bold NaN">Argon Design System</span>
-                                </th>
-                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">$2,500 USD</td>
-                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    <i className="fas fa-circle text-orange-500 mr-2"></i> pending
-                                </td>
-                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    <div className="flex">
-                                        <img src="https://demos.creative-tim.com/notus-nextjs/img/team-1-800x800.jpg" alt="..." className="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow" />
-                                        <img src="https://demos.creative-tim.com/notus-nextjs/img/team-2-800x800.jpg" alt="..." className="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4" />
-                                        <img src="https://demos.creative-tim.com/notus-nextjs/img/team-3-800x800.jpg" alt="..." className="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4" />
-                                        <img src="https://demos.creative-tim.com/notus-nextjs/img/team-4-470x470.png" alt="..." className="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4" />
-                                    </div>
-                                </td>
-                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    <div className="flex items-center">
-                                        <span className="mr-2">60%</span>
-                                        <div className="relative w-full">
-                                            <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-                                                <div className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500" style={{width: "60%"}}></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                                    <Link className="text-blueGray-500 py-1 px-3" href="#pablo">
-                                        <i className="fas fa-ellipsis-v"></i>
-                                    </Link>
-                                    <div className="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48" style={{position: "absolute", inset: "0px 0px auto auto", margin: "0px", transform: "translate(-108px, 414px)"}} data-popper-placement="left-start">
-                                        <Link href="#pablo" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Action</Link>
-                                        <Link href="#pablo" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Another action</Link>
-                                        <Link href="#pablo" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Something else here</Link>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
                     </table>
                 </div>
             </div>
