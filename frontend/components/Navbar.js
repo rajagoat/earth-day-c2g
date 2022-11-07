@@ -1,22 +1,50 @@
 import Link from 'next/link'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
+import { useAuthContext } from '../hooks/useAuthContext'
+import Router from 'next/router'
 
 
 var TotalFood = 357;
-const navigation = [
+/* const navigation = [
   { name: 'Dashboard', href: '/gleaner', current: true },
   { name: 'Team', href: '/gleaner/teaminfo', current: false },
   { name: 'Food Counter (lbs saved): ' + JSON.parse(TotalFood), href: '', current: false },
-]
+] */
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navbar() {
+  const { user } = useAuthContext();
+  const [navigation, setNavigation] = useState([]);
+
+  useEffect(() => {
+    if (!user) {
+      Router.push("/");
+    }
+    let tempNav = [];
+    switch (user?.typeOfUser) {
+      case 'Gleaner':
+        tempNav.push({ name: 'Dashboard', href: '/gleaner', current: true });
+        tempNav.push({ name: 'Team', href: '/gleaner/teaminfo', current: false });
+        break;
+      case 'Farmer':
+        tempNav.push({ name: 'Dashboard', href: '/farmer', current: true });
+        break;
+      case 'Food Bank Worker':
+        tempNav.push({ name: 'Dashboard', href: '/foodbank', current: true });
+        break;
+      default:
+        break;
+    }
+    tempNav.push({ name: 'Food Counter (lbs saved): ' + JSON.parse(TotalFood), href: '', current: false })
+    console.log(tempNav);
+    setNavigation(tempNav);
+  }, []);
+
   const [isShown, setNotifications] = useState(false);
   const handleClick = event => {
     setNotifications(current => !current);
