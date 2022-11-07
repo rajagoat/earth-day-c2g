@@ -7,6 +7,14 @@ const gleaningActivitySchema = new Schema({
         type: Schema.Types.ObjectId, ref: 'Farmer',
         required: true
     },
+    streetAddress: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
     gleaningGroup: {
         type: Schema.Types.ObjectId, ref: 'Gleaning Group',
     },

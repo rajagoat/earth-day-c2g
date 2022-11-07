@@ -1,3 +1,5 @@
+import { useRouter } from "next/router"
+
 /* 
 <h1>More User Information</h1>
             <h2>All users need:</h2>
@@ -16,6 +18,11 @@
             <p>Maximum capacity of produce they can collect</p>
 */
 export default function UserInfo() {
+    const router = useRouter();
+    const typeOfUser = router.query;
+    // test what typeOfUser using hasOwnProperty
+    console.log(typeOfUser);
+
     return (
         <>
             <div className="mx-12 max-w-7xl py-12 pb-0 px-4 sm:px-0 lg:py-12 lg:px-0 lg:pb-0">
