@@ -1,51 +1,17 @@
 import Link from 'next/link'
-import Router, { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useSignup } from '../hooks/useSignup';
 
 export default function Signup() {
     const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [typeOfUser, setTypeOfUser] = useState('');
-    const [error, setError] = useState(null);
+    const { signup, error } = useSignup();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (password != confirmPassword) {
-            setError('Error: Passwords Mismatch');
-        }
-        if (!typeOfUser) {
-            setError("Error: Please select what type of user you are.");
-        }
-        else {
-            const user = {
-                email,
-                username,
-                password,
-                typeOfUser
-            };
-            const response = await fetch("http://localhost:4000/api/user/signup", {
-                method: 'POST',
-                body: JSON.stringify(user),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const json = await response.json();
-            if (!response.ok) {
-                setError("Error: " + json.error);
-            } else {
-                Router.push({
-                    pathname: "/userinfo",
-                    query:
-                    {
-                        typeOfUser,
-                        _id: json._id
-                    }
-                });
-            }
-        }
+        await signup(email, password, confirmPassword, typeOfUser);
     };
 
     return (
@@ -83,21 +49,6 @@ export default function Signup() {
                                             className="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                             placeholder="example@mail.com"
                                             onChange={(e) => setEmail(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <div className="col-span-3 sm:col-span-2 mt-3">
-                                    <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                                        Username
-                                    </label>
-                                    <div className="mt-1 flex rounded-md shadow-sm">
-                                        <input
-                                            type="text"
-                                            name="username"
-                                            id="username"
-                                            className="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                            onChange={(e) => setUsername(e.target.value)}
                                             required
                                         />
                                     </div>
@@ -181,14 +132,14 @@ export default function Signup() {
                         <div>
                             <button
                                 type="submit"
-                                className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                className="cursor-pointer group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                                 Create Account
                             </button>
                         </div>
                         {error &&
                             <div>
-                                {error}
+                                Error: {error}
                             </div>
                         }
                     </form>
