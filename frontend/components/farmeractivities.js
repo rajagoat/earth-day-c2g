@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import Router from "next/router";
+
 import { CheckRating } from "./Ratings";
 import { Foodbankinfo } from "./Foodbankinfo";
 
@@ -8,9 +10,12 @@ import { useGleaningActivitiesContext } from "../hooks/useGleaningActivitiesCont
 const GleaningActivities = () => {
     const { user } = useAuthContext();
     const { gleaningActivities, dispatch } = useGleaningActivitiesContext();
-    const [stateColour, setStateColour] = useState('');
 
     useEffect(() => {
+        if (!user) {
+            Router.push("/");
+        }
+
         const fetchActivities = async () => {
             const response = await fetch("http://localhost:4000/api/gleaningactivity");
             const json = await response.json();

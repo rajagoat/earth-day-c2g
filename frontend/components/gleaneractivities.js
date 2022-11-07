@@ -1,44 +1,99 @@
 import { useEffect } from "react";
-import Link from "next/link";
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import Router from "next/router";
 
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useGleanersContext } from "../hooks/useGleanersContext";
 import { useGleaningActivitiesContext } from "../hooks/useGleaningActivitiesContext";
 
-const GleaningActivities = () => {
-    const { gleaningActivities, dispatch } = useGleaningActivitiesContext();
+import Farmer from "../components/Farmer";
 
+const GleaningActivities = () => {
+    const { user } = useAuthContext();
+    const { gleaners, dispatch } = useGleanersContext();
+    const { gleaningActivities, dispatch: gleaningActivitiesDispatch } = useGleaningActivitiesContext();
+
+    const addToDB = async (name, id) => {
+        const groupID = {
+            gleaningGroup: name
+        }
+        const response = await fetch("http://localhost:4000/api/gleaningactivity/" + id, {
+            method: 'PUT',
+            body: JSON.stringify(groupID),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const json = await response.json();
+        if (response.ok) {
+            gleaningActivitiesDispatch({
+                type: "UPDATE_ACTIVITY",
+                payload: json
+            })
+        }
+    }
+    
     useEffect(() => {
+        if (!user) {
+            Router.push("/");
+        }
+
+        const fetchGleaner = async () => {
+            const response = await fetch("http://localhost:4000/api/gleaner/" + user?._id);
+            const json = await response.json();
+            if (response.ok) {
+                dispatch({
+                    type: "SET_GLEANER",
+                    payload: json
+                })
+            }
+        }
+
         const fetchActivities = async () => {
             const response = await fetch("http://localhost:4000/api/gleaningactivity");
             const json = await response.json();
             if (response.ok) {
-                dispatch({
+                gleaningActivitiesDispatch({
                     type: 'SET_ACTIVITIES',
                     payload: json
                 })
             }
         };
 
+        fetchGleaner();
         fetchActivities();
-    }, [dispatch]);
+    }, [dispatch, gleaningActivitiesDispatch]);
 
     return (
         <tbody>
             {gleaningActivities && gleaningActivities.map(activity =>
-                 <tr>
-                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                        <h1 className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.farmer}</h1>
+                <tr key={activity._id}>
+                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <Farmer id={activity.farmer}/>
                     </th>
-                    
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        {activity.createdAt}
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+                        <h1 className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.typeOfProduce}</h1>
                     </td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.endDate}</td>
+
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        {new Date(activity.createdAt).toDateString()}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{new Date(activity.endDate).toDateString()}</td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">{activity.streetAddress}, {activity.city}</td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Volunteer!
-                        </button>
+                        {activity?.gleaningGroup === gleaners?.gleaningGroup ?
+                            <button
+                                disabled={true}
+                                className="bg-white text-blue-500 font-bold py-2 px-4 rounded"
+                            >
+                                Request Sent
+                            </button>
+                            :
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                onClick={() => addToDB(gleaners.gleaningGroup, activity._id)}
+                            >
+                                Volunteer!
+                            </button>}
                     </td>
                 </tr>
             )}

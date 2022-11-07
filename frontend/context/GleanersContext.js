@@ -11,29 +11,29 @@ export const gleanersReducer = (state, action) => {
             }
         case 'SET_GLEANER':
             return {
-                // action.payload is one farmer
+                // action.payload is one gleaner
                 gleaners: action.payload
             }
         case 'CREATE_GLEANER':
             return {
-                // action.payload is new farmer, state.gleaners is past
+                // action.payload is new gleaner, state.gleaners is past
                 // representation of gleaners
                 gleaners: [action.payload, ...state.gleaners]
             }
         case 'UPDATE_GLEANER':
             return {
-                // action.payload is updated farmer, state.gleaners is past
+                // action.payload is updated gleaner, state.gleaners is past
                 // representation  of gleaners
-                gleaners: [action.payload, ...state.gleaners.filter(farmer =>
-                    farmer._id !== action.payload._id
+                gleaners: [action.payload, ...state.gleaners.filter(gleaner =>
+                    gleaner._id !== action.payload._id
                 )]
             }
         case 'DELETE_GLEANER':
             return {
-                // action.payload is deleted farmer, state.gleaners is past
+                // action.payload is deleted gleaner, state.gleaners is past
                 // representation of gleaners
-                gleaners: state.gleaners.filter(farmer =>
-                    farmer._id !== action.payload._id
+                gleaners: state.gleaners.filter(gleaner =>
+                    gleaner._id !== action.payload._id
                 )
             }
         default:
