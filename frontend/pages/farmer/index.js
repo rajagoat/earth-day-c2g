@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { GleaningModal } from "../../components/newGleaningModal";
 import GleaningActivities from "../../components/farmeractivities";
+import { CheckRating } from "../../components/Ratings";
+import { Foodbankinfo } from "../../components/Foodbankinfo";
 
 const Home = () => {
 
@@ -165,6 +167,13 @@ const Home = () => {
                                         <Link href="#pablo" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Another action</Link>
                                         <Link href="#pablo" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Something else here</Link>
                                     </div>
+                                </td>
+
+                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        <CheckRating/>
+                                </td>
+                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        <Foodbankinfo/>
                                 </td>
                             </tr>
                         </tbody> */}
