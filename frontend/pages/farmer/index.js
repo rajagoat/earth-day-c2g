@@ -3,8 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { GleaningModal } from "../../components/newGleaningModal";
 import GleaningActivities from "../../components/farmeractivities";
-import { CheckRating } from "../../components/Ratings";
-import { Foodbankinfo } from "../../components/Foodbankinfo";
+
 
 const Home = () => {
 
