@@ -2,11 +2,13 @@ import Link from 'next/link'
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import {Notification} from './Notification'
+import { Notification } from './Notification'
 
+var TotalFood=357;
 const navigation = [
   { name: 'Dashboard', href: '/gleaner', current: true },
   { name: 'Team', href: '/gleaner/teaminfo', current: false },
+  { name: 'Food Counter: '+JSON.parse(TotalFood) +' lbs saved till date',href: '', current: false },
 ]
 
 function classNames(...classes) {
